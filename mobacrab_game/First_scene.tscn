@@ -1,12 +1,32 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/basicbean.tscn" type="PackedScene" id=1]
 
 [sub_resource type="BoxShape" id=1]
 
 [sub_resource type="CubeMesh" id=2]
 
+[sub_resource type="MeshTexture" id=7]
+
+[sub_resource type="SpatialMaterial" id=8]
+metallic = 1.0
+metallic_specular = 0.62
+metallic_texture = SubResource( 7 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 1, 0.968627, 0, 1 )
+emission_enabled = true
+emission = Color( 1, 0.968627, 0, 1 )
+emission_energy = 5.24
+emission_operator = 0
+emission_on_uv2 = false
+
 [sub_resource type="BoxShape" id=3]
 
 [sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0, 0.372549, 0.00392157, 1 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -48,7 +68,7 @@ shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Box4"]
 mesh = SubResource( 2 )
-material/0 = null
+material/0 = SubResource( 8 )
 
 [node name="Box5" type="RigidBody" parent="."]
 transform = Transform( 0.89958, -0.409425, 0.152077, 0.289913, 0.820185, 0.493201, -0.32666, -0.399584, 0.856519, 0.689007, 26.5557, 2.40216 )
@@ -58,10 +78,10 @@ shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Box5"]
 mesh = SubResource( 2 )
-material/0 = null
+material/0 = SubResource( 6 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -0.0141921, -0.24617, 0.969123, -0.0036046, 0.969227, 0.246144, -0.999893, 0, -0.0146427, 8.81494, 4.23374, 0 )
+transform = Transform( -4.35543e-08, 0.0847039, -0.996406, 3.70253e-09, 0.996406, 0.0847039, 1, 0, -4.37114e-08, -50, 20, 0 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 
@@ -72,4 +92,7 @@ shape = SubResource( 3 )
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
 transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
 mesh = SubResource( 4 )
-material/0 = null
+material/0 = SubResource( 5 )
+
+[node name="basicbean" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9249, 0 )
