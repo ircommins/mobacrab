@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/basicbean.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/floor.tscn" type="PackedScene" id=2]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -20,13 +21,6 @@ emission = Color( 1, 0.968627, 0, 1 )
 emission_energy = 5.24
 emission_operator = 0
 emission_on_uv2 = false
-
-[sub_resource type="BoxShape" id=3]
-
-[sub_resource type="CubeMesh" id=4]
-
-[sub_resource type="SpatialMaterial" id=5]
-albedo_color = Color( 0, 0.372549, 0.00392157, 1 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -80,19 +74,11 @@ shape = SubResource( 1 )
 mesh = SubResource( 2 )
 material/0 = SubResource( 6 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( -4.35543e-08, 0.0847039, -0.996406, 3.70253e-09, 0.996406, 0.0847039, 1, 0, -4.37114e-08, -50, 20, 0 )
-
-[node name="StaticBody" type="StaticBody" parent="."]
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
-shape = SubResource( 3 )
-
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
-transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
-mesh = SubResource( 4 )
-material/0 = SubResource( 5 )
-
 [node name="basicbean" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9249, 0 )
+
+[node name="Camera" type="Camera" parent="basicbean"]
+transform = Transform( 0.104528, 0.703233, -0.703233, 0, 0.707107, 0.707107, 0.994522, -0.0739127, 0.0739127, -12.58, 8.957, 2 )
+
+[node name="floor" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 0 )

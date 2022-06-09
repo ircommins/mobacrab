@@ -1,5 +1,6 @@
 extends KinematicBody
-
+var gravity = -100
+var speed = 10
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -34,14 +35,15 @@ func _physics_process(delta):
 	if no_left_right_pressed():
 		velocity.z = 0
 	if Input.is_action_pressed("ui_up"):
-		velocity.x = 5
+		velocity.x = speed
 	if Input.is_action_pressed("ui_down"):
-		velocity.x = -5
+		velocity.x = -speed
 	if Input.is_action_pressed("ui_left"):
-		velocity.z = -5
+		velocity.z = -speed
 	if Input.is_action_pressed("ui_right"):
-		velocity.z = 5
-	move_and_slide(velocity)
+		velocity.z = speed
+	velocity.y += gravity * delta
+	velocity = move_and_slide(velocity, Vector3.UP)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
